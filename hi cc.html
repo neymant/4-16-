@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>熙熙在幹嘛</title>
+<style>
+    .heart {
+        position: fixed;
+        width: 30px;
+        height: 30px;
+        transform: rotate(-45deg);
+        opacity: 0;
+        transition: opacity 0.6s ease-in-out;
+        will-change: opacity;
+    }
+    .heart:before, .heart:after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: 30px;
+        height: 45px;
+        background-color: pink;
+        border-radius: 30px 30px 0 0;
+    }
+    .heart:before {
+        left: 0;
+    }
+    .heart:after {
+        left: -15px;
+    }
+</style>
+</head>
+<body>
+
+<a href="#" onclick="createHearts(); return false;">熙熙在幹嘛</a>
+
+<script>
+function createHearts() {
+    const count = 50; // 愛心數量
+    for (let i = 0; i < count; i++) {
+        const heart = document.createElement('div');
+        heart.className = 'heart';
+        document.body.appendChild(heart);
+        animateHeart(heart);
+    }
+}
+
+function animateHeart(heart) {
+    const duration = Math.random() * 2 + 3; // 持續時間3-5秒
+    const posX = Math.random() * (window.innerWidth - 60);
+    const posY = Math.random() * (window.innerHeight - 60);
+    heart.style.left = posX + 'px';
+    heart.style.top = posY + 'px';
+    heart.style.opacity = 1;
+    setTimeout(() => {
+        heart.style.opacity = 0;
+        setTimeout(() => heart.remove(), 600);
+    }, duration * 1000);
+}
+</script>
+
+</body>
+</html>
+
